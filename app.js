@@ -64,14 +64,13 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize())
 // app.use(express.urlencoded({extended: true}))
 
-// const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!';
 
-const store = MongoStore.create({
+const store =new MongoStore({
     mongoUrl: dbUrl,
+    secret,
     touchAfter: 24 * 60 * 60, //limiting period of time, do update onces every 24hr only
-    crypto: {
-        secret: 'thisisabettersecret!'
-    }
+
 });
 store.on("error", function (e) {
     console.log("SESSION STORE ERROR", e)
@@ -81,7 +80,7 @@ store.on("error", function (e) {
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'thisshouldbeabettersecret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
