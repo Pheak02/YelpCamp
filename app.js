@@ -1,5 +1,6 @@
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config();
+    
 }
 // require('dotenv').config();
 
@@ -38,8 +39,9 @@ const reviewsRoutes = require('./routes/reviews');
 
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const dbUrl = 'mongodb://127.0.0.1:27017/yelp-camp';
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/yelp-camp';
 
+// const dbUrl = process.env.DB_URL; // || 'mongodb://127.0.0.1:27017/yelp-camp';
 
 mongoose.connect(dbUrl
 );
