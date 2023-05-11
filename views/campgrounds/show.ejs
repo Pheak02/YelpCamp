@@ -65,9 +65,10 @@
           <button class="btn btn-danger">Delete</button>
         </form>
       </div>
-      <% } %>
       <div class="card-footer text-muted">2 days ago</div>
+      <% } %>
     </div>
+    <a href="/campgrounds">All campground</a>
   </div>
   <div class="col-6">
     <div id="map"></div>
@@ -141,7 +142,6 @@
     <% } %>
   </div>
 </div>
-<a href="./index.ejs">All campground</a>
 
 <script>
   const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
